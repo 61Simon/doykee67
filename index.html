@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>doykee67 - hot doykee</title>
+    
+    <!-- Подключение шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Montserrat:wght@400;700;900&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Подключение иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #0f0f0f;
+            --bg-surface: #212121;
+            --accent-orange: #ff6b00;
+            --text-white: #ffffff;
+            --text-red: #ff3333;
+            --border-color: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            font-family: 'Roboto', 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        header {
+            background-color: var(--bg-surface);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            border-bottom: 2px solid var(--border-color);
+            z-index: 10;
+            flex-shrink: 0;
+        }
+
+        .url-bar {
+            background-color: #fff;
+            color: #000;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+
+        .layout-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            flex: 1;
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 10px 20px;
+            gap: 20px;
+            overflow: hidden;
+        }
+
+        .side-column {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(10, auto);
+            align-content: space-between;
+            gap: 5px 2px;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .side-column.left { justify-items: end; }
+        .side-column.right { justify-items: start; }
+
+        .side-text {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 1.8rem;
+            white-space: nowrap;
+            opacity: 0.6;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .side-text:nth-child(odd) { color: var(--accent-orange); transform: rotate(-10deg); }
+        .side-text:nth-child(even) { color: var(--text-white); transform: rotate(8deg); }
+        .side-text:nth-child(3n) { transform: rotate(-5deg) scale(0.9); }
+        .side-text:nth-child(4n) { transform: rotate(15deg) scale(1.05); }
+        .side-text:nth-child(5n) { color: var(--text-red); transform: rotate(-15deg); }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 900px;
+            flex-shrink: 0;
+            padding: 0 20px;
+        }
+
+        .logo-section {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .logo-box {
+            padding: 12px 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        .hot-box {
+            background-color: var(--accent-orange);
+            color: #000;
+            box-shadow: 0 0 20px rgba(255, 107, 0, 0.6);
+        }
+
+        .doo-box {
+            background-color: #000;
+            color: #fff;
+            border: 2px solid var(--border-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            color: var(--text-white);
+            font-size: 2.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-orange);
+            transform: translateY(-5px) scale(1.1);
+            text-shadow: 0 0 15px rgba(255, 107, 0, 0.8);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            width: 100%;
+        }
+
+        /* Обновленный стиль для ссылок 18+ */
+        .grid-item {
+            position: relative; /* Важно для позиционирования картинки */
+            overflow: hidden; /* Чтобы картинка не вылезала за границы */
+            background-color: #000;
+            border: 3px solid var(--border-color);
+            border-radius: 12px;
+            aspect-ratio: 16 / 9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            text-decoration: none;
+        }
+
+        /* Стиль для текста 18+ */
+        .grid-text {
+            font-size: 4.5rem;
+            font-weight: bold;
+            color: var(--text-red);
+            font-family: 'Permanent Marker', cursive;
+            transition: opacity 0.3s ease; /* Плавное исчезновение текста */
+            z-index: 1;
+        }
+
+        /* Стиль для картинки, которая появляется при наведении */
+        .grid-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Картинка заполняет весь блок без искажений */
+            opacity: 0; /* По умолчанию картинка невидима */
+            transition: opacity 0.3s ease; /* Плавное появление */
+            border-radius: 9px; /* Чуть меньше, чем у родителя, чтобы не вылезать */
+            z-index: 2;
+        }
+
+        /* Эффекты при наведении */
+        .grid-item:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 107, 0, 0.4);
+        }
+
+        /* При наведении текст исчезает */
+        .grid-item:hover .grid-text {
+            opacity: 0;
+        }
+
+        /* При наведении картинка появляется */
+        .grid-item:hover .grid-image {
+            opacity: 1;
+        }
+
+        footer {
+            background-color: var(--bg-surface);
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9rem;
+            color: #aaaaaa;
+            border-top: 2px solid var(--border-color);
+            z-index: 10;
+            flex-shrink: 0;
+        }
+
+        footer span {
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .side-text { font-size: 1.4rem; }
+            .grid-text { font-size: 3.5rem; }
+            .logo-box { font-size: 2rem; padding: 10px 30px; }
+        }
+
+        @media (max-width: 900px) {
+            .side-column { display: none; }
+            .layout-wrapper { padding: 20px; }
+            .grid-container { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .grid-text { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="url-bar">doykee67.com</div>
+    </header>
+
+    <div class="layout-wrapper">
+        
+        <!-- Левая колонка -->
+        <div class="side-column left">
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+        </div>
+
+        <!-- Центральный контент -->
+        <main>
+            <div class="logo-section">
+                <div class="logo-box hot-box">hot</div>
+                <div class="logo-box doo-box">doykee</div>
+            </div>
+
+            <div class="social-links">
+                <a href="https://soundcloud.com/dimee00" target="_blank" rel="noopener noreferrer" title="SoundCloud"><i class="fab fa-soundcloud"></i></a>
+                <a href="https://open.spotify.com/artist/3IRnhpjFdMUb4Tzt0V2clS" target="_blank" rel="noopener noreferrer" title="Spotify"><i class="fab fa-spotify"></i></a>
+                <a href="https://t.me/soykee00" target="_blank" rel="noopener noreferrer" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+
+            <!-- Сетка 18+ с картинками -->
+            <div class="grid-container">
+                <!-- Замените ссылки ниже на свои собственные фото -->
+                <a href="https://i.ibb.co/ZRZftmJ9/image.png" target="_blank" class="grid-item">
+                    <span class="grid-text">18+</span>
+                    <img src="https://i.ibb.co/ZRZftmJ9/image.png" alt="18+" class="grid-image">
+                </a>
+                <a href="https://i.ibb.co/1GN2cnSW/image.png" target="_blank" class="grid-item">
+                    <span class="grid-text">18+</span>
+                    <img src="https://i.ibb.co/1GN2cnSW/image.png" alt="18+" class="grid-image">
+                </a>
+                <a href="https://i.ibb.co/dJBv6GT8/image.png" target="_blank" class="grid-item">
+                    <span class="grid-text">18+</span>
+                    <img src="https://i.ibb.co/dJBv6GT8/image.png" alt="18+" class="grid-image">
+                </a>
+                <a href="https://i.ibb.co/wZGkP11w/image.png" target="_blank" class="grid-item">
+                    <span class="grid-text">18+</span>
+                    <img src="https://i.ibb.co/wZGkP11w/image.png" alt="18+" class="grid-image">
+                </a>
+                <a href="https://i.ibb.co/whtZL2v8/image.png" target="_blank" class="grid-item">
+                    <span class="grid-text">18+</span>
+                    <img src="https://i.ibb.co/whtZL2v8/image.png" alt="18+" class="grid-image">
+                </a>
+                <a href="https://i.ibb.co/JwD7Vfv8/image.png" target="_blank" class="grid-item">
+                    <span class="grid-text">18+</span>
+                    <img src="https://i.ibb.co/JwD7Vfv8/image.png" alt="18+" class="grid-image">
+                </a>
+            </div>
+        </main>
+
+        <!-- Правая колонка -->
+        <div class="side-column right">
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+            <div class="side-text">doykee</div><div class="side-text">doykee</div><div class="side-text">doykee</div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; <span id="year"></span> by 61Simon. Все права защищены.
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const gridItems = document.querySelectorAll('.grid-item');
+        gridItems.forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+
+</body>
+</html>
